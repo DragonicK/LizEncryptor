@@ -1,4 +1,6 @@
-﻿namespace LizEncryptor.Cryptography {
+﻿using System;
+
+namespace LizEncryptor.Cryptography {
     public class CryptographyKey {
         private readonly byte[] defaultKey;
         private readonly byte[] defaultIv;
@@ -57,7 +59,11 @@
                 key[i] = hash[i % hash.Length];
             }
 
-            for (var i = (CryptographyKeyLength.Iv - 1); i >= 0; i--) {
+            Array.Reverse(hash);
+
+            // This method is insecure, replace Iv using an automatic generator.
+
+            for (var i = 0; i < CryptographyKeyLength.Iv; i++) {
                 iv[i] = hash[i % hash.Length];
             }
 
