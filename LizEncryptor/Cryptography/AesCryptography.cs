@@ -37,11 +37,7 @@ namespace LizEncryptor.Cryptography {
                 success = false;
             }
 
-            if (success) {
-                return encryptedBytes;
-            }
-
-            return null;
+            return encryptedBytes;
         }
 
         public byte[] Decrypt(byte[] bytesToBeDecrypted, byte[] key, byte[] iv, out bool success) {
@@ -53,7 +49,7 @@ namespace LizEncryptor.Cryptography {
                         AES.KeySize = (int)KeySize;
                         AES.BlockSize = BlockSize;
                         AES.Mode = CipherMode;
-                        AES.Padding = PaddingMode.None;
+                        AES.Padding = PaddingMode;
 
                         AES.Key = key;
                         AES.IV = iv;
@@ -72,11 +68,7 @@ namespace LizEncryptor.Cryptography {
                 success = false;
             }
 
-            if (success) {
-                return encryptedBytes;
-            }
-
-            return null;
+            return encryptedBytes;
         }
     }
 }
